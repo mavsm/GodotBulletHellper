@@ -1,0 +1,266 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/BulletHellper/UI/PopupMenuButton.gd" type="Script" id=1]
+[ext_resource path="res://addons/BulletHellper/UI/ParameterContainers/ParameterGroup.gd" type="Script" id=2]
+[ext_resource path="res://addons/BulletHellper/UI/PropertySetters/TextParameter.gd" type="Script" id=3]
+[ext_resource path="res://addons/BulletHellper/UI/TooltipLabel.gd" type="Script" id=4]
+[ext_resource path="res://addons/BulletHellper/UI/PropertySetters/BulletTypeParameter.gd" type="Script" id=5]
+[ext_resource path="res://addons/BulletHellper/BasicBullets/SmallBullet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/BulletHellper/BasicBullets/BigBullet.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/BulletHellper/BasicBullets/SimpleBullet.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/BulletHellper/UI/ParameterContainers/ParametersHideShow.gd" type="Script" id=9]
+
+
+
+
+[node name="BasicParameters" type="MarginContainer"]
+margin_right = 390.0
+margin_bottom = 91.0
+rect_min_size = Vector2( 390, 0 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+param_containers = [ NodePath("VBoxContainer"), NodePath("VBoxContainer/AdvancedDropdown/Button/Control/VBoxContainer") ]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 390.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 390, 0 )
+color = Color( 0.278431, 0.356863, 0.4, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 390.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 390, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 390.0
+margin_bottom = 20.0
+script = ExtResource( 9 )
+hideable_controls = [ NodePath("../Cooldown"), NodePath("../BulletNum"), NodePath("../AdvancedDropdown"), NodePath("../BulletType") ]
+
+[node name="GenericLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_top = 3.0
+margin_right = 286.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Basic Parameters"
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 290.0
+margin_right = 390.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 20 )
+toggle_mode = true
+text = "Show"
+
+[node name="Cooldown" type="HBoxContainer" parent="VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 24.0
+margin_right = 390.0
+margin_bottom = 48.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "bullet_cooldown"
+
+[node name="Label" type="Label" parent="VBoxContainer/Cooldown"]
+margin_top = 5.0
+margin_right = 326.0
+margin_bottom = 19.0
+mouse_filter = 1
+size_flags_horizontal = 3
+text = "Shot Cooldown"
+script = ExtResource( 4 )
+tip = "(float, seconds)
+Time taken between shots."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Cooldown"]
+margin_left = 330.0
+margin_right = 390.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 60, 0 )
+text = ".5"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="BulletNum" type="HBoxContainer" parent="VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 52.0
+margin_right = 390.0
+margin_bottom = 76.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "bullet_num"
+
+[node name="Label" type="Label" parent="VBoxContainer/BulletNum"]
+margin_top = 5.0
+margin_right = 326.0
+margin_bottom = 19.0
+mouse_filter = 1
+size_flags_horizontal = 3
+text = "Bullet Number"
+script = ExtResource( 4 )
+tip = "(int, bullets)
+Number of bullets fired on each shot."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/BulletNum"]
+margin_left = 330.0
+margin_right = 390.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 60, 0 )
+text = "5"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="AdvancedDropdown" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 80.0
+margin_right = 390.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/AdvancedDropdown"]
+margin_top = 3.0
+margin_right = 341.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Advanced"
+script = ExtResource( 4 )
+tip = "Other parameters relating to bullet spawn timing."
+
+[node name="Button" type="Button" parent="VBoxContainer/AdvancedDropdown"]
+margin_left = 345.0
+margin_right = 390.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "Show"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="MarginContainer" parent="VBoxContainer/AdvancedDropdown/Button"]
+visible = false
+margin_left = -325.0
+margin_top = 22.0
+margin_right = 38.0
+margin_bottom = 74.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/AdvancedDropdown/Button/Control"]
+margin_right = 363.0
+margin_bottom = 52.0
+color = Color( 0.211853, 0.299468, 0.347656, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/AdvancedDropdown/Button/Control"]
+margin_right = 363.0
+margin_bottom = 52.0
+
+[node name="InitialWaitTime" type="HBoxContainer" parent="VBoxContainer/AdvancedDropdown/Button/Control/VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_right = 363.0
+margin_bottom = 24.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "initial_wait_time"
+
+[node name="Label" type="Label" parent="VBoxContainer/AdvancedDropdown/Button/Control/VBoxContainer/InitialWaitTime"]
+margin_top = 5.0
+margin_right = 299.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Initial Cooldown"
+script = ExtResource( 4 )
+tip = "(float, seconds)
+Delay between initially enabling this pattern to shoot and it's first shot."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/AdvancedDropdown/Button/Control/VBoxContainer/InitialWaitTime"]
+margin_left = 303.0
+margin_right = 363.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 60, 0 )
+text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="BetweenShotsCooldown" type="HBoxContainer" parent="VBoxContainer/AdvancedDropdown/Button/Control/VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 28.0
+margin_right = 363.0
+margin_bottom = 52.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "cooldown_between_bullets"
+
+[node name="Label" type="Label" parent="VBoxContainer/AdvancedDropdown/Button/Control/VBoxContainer/BetweenShotsCooldown"]
+margin_top = 5.0
+margin_right = 299.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Wait Between Bullet"
+script = ExtResource( 4 )
+tip = "(float, seconds)
+Delay between each bullet shot. Should NOT be greater than bulletNumber*shotCooldown. WARNING : When working with small values may cause shots to overlap, causing unpredictable behaviour."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/AdvancedDropdown/Button/Control/VBoxContainer/BetweenShotsCooldown"]
+margin_left = 303.0
+margin_right = 363.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 60, 0 )
+text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="PopupPos" type="Position2D" parent="VBoxContainer/AdvancedDropdown/Button"]
+position = Vector2( -325, 22 )
+
+[node name="BulletType" type="HBoxContainer" parent="VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 104.0
+margin_right = 390.0
+margin_bottom = 124.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "bullet_scene"
+bullet_scenes = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ) ]
+
+[node name="Label" type="Label" parent="VBoxContainer/BulletType"]
+margin_top = 3.0
+margin_right = 357.0
+margin_bottom = 17.0
+mouse_filter = 1
+size_flags_horizontal = 3
+text = "Bullet Type"
+script = ExtResource( 4 )
+tip = "(SIMPLE, BIG or SMALL)
+Type of bullet this pattern shoots."
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/BulletType"]
+margin_left = 361.0
+margin_right = 390.0
+margin_bottom = 20.0

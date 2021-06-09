@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/BulletHellper/UI/ToolTipPopup.gd" type="Script" id=1]
+
+
+[node name="ToolTipPopup" type="MarginContainer" groups=[
+"ToolTip",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -774.0
+margin_bottom = -800.0
+rect_min_size = Vector2( 250, 100 )
+rect_pivot_offset = Vector2( 125, -5 )
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+offset = Vector2( -125, 15 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 250.0
+margin_bottom = 100.0
+mouse_filter = 1
+color = Color( 0.180392, 0.137255, 0.294118, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 249.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 250, 100 )
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "Lorem Ipsum
+This does that as long as blank gets blanked with blonk."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

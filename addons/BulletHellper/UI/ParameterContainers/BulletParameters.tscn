@@ -1,0 +1,366 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/BulletHellper/UI/PropertySetters/ColorProperty.gd" type="Script" id=1]
+[ext_resource path="res://addons/BulletHellper/UI/ParameterContainers/ParameterGroup.gd" type="Script" id=2]
+[ext_resource path="res://addons/BulletHellper/UI/PropertySetters/TextParameter.gd" type="Script" id=3]
+[ext_resource path="res://addons/BulletHellper/UI/PopupMenuButton.gd" type="Script" id=4]
+[ext_resource path="res://addons/BulletHellper/UI/PropertySetters/GradientColorProperty.gd" type="Script" id=5]
+[ext_resource path="res://addons/BulletHellper/UI/PropertySetters/CheckboxParameter.gd" type="Script" id=6]
+[ext_resource path="res://addons/BulletHellper/UI/TooltipLabel.gd" type="Script" id=7]
+[ext_resource path="res://addons/BulletHellper/UI/ParameterContainers/ParametersHideShow.gd" type="Script" id=8]
+
+
+[node name="BulletParameters" type="MarginContainer"]
+margin_right = 390.0
+margin_bottom = 146.0
+rect_min_size = Vector2( 390, 0 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+param_containers = [ NodePath("VBoxContainer"), NodePath("VBoxContainer/Gradient/Button/Control/VBoxContainer") ]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 390.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 390, 0 )
+color = Color( 0.498039, 0.317647, 0.388235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 390.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 390, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 390.0
+margin_bottom = 20.0
+script = ExtResource( 8 )
+hideable_controls = [ NodePath("../Speed"), NodePath("../Acceleration"), NodePath("../Lifetime"), NodePath("../OOBTime"), NodePath("../Color"), NodePath("../Gradient") ]
+
+[node name="GenericLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_top = 3.0
+margin_right = 286.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Bullet Parameters"
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 290.0
+margin_right = 390.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 0 )
+toggle_mode = true
+
+[node name="Speed" type="HBoxContainer" parent="VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 24.0
+margin_right = 390.0
+margin_bottom = 48.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "shell.speed"
+
+[node name="Label" type="Label" parent="VBoxContainer/Speed"]
+margin_top = 5.0
+margin_right = 326.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Speed"
+script = ExtResource( 7 )
+tip = "(float, position units/second)
+Bullet's individual speed."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Speed"]
+margin_left = 330.0
+margin_right = 390.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 60, 0 )
+text = "100"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Acceleration" type="HBoxContainer" parent="VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 52.0
+margin_right = 390.0
+margin_bottom = 76.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "shell.acceleration"
+
+[node name="Label" type="Label" parent="VBoxContainer/Acceleration"]
+margin_top = 5.0
+margin_right = 326.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Acceleration"
+script = ExtResource( 7 )
+tip = "(float, position units/seconds squared)
+Bullet's acceleration."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Acceleration"]
+margin_left = 330.0
+margin_right = 390.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 60, 0 )
+text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Lifetime" type="HBoxContainer" parent="VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 80.0
+margin_right = 390.0
+margin_bottom = 104.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "shell.lifetime"
+
+[node name="Label" type="Label" parent="VBoxContainer/Lifetime"]
+margin_top = 5.0
+margin_right = 326.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Lifetime"
+script = ExtResource( 7 )
+tip = "(float, seconds)
+Time between bullet spawning and dying."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Lifetime"]
+margin_left = 330.0
+margin_right = 390.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 60, 0 )
+text = "3"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="OOBTime" type="HBoxContainer" parent="VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 108.0
+margin_right = 390.0
+margin_bottom = 132.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "shell.oob_check_time"
+
+[node name="Label" type="Label" parent="VBoxContainer/OOBTime"]
+margin_top = 5.0
+margin_right = 326.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Check if Out Of Bounds Time"
+script = ExtResource( 7 )
+tip = "(float, seconds)
+Time between bullet spawning and when it begins to check if it's out of the set  bounds. Useful for bullets that leave and reenter the screen."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/OOBTime"]
+margin_left = 330.0
+margin_right = 390.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 60, 0 )
+text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Color" type="HBoxContainer" parent="VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 136.0
+margin_right = 390.0
+margin_bottom = 156.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "shell.color"
+
+[node name="Label" type="Label" parent="VBoxContainer/Color"]
+margin_top = 3.0
+margin_right = 286.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Color"
+script = ExtResource( 7 )
+tip = "(Color)
+Color applied to bullet if not using gradients."
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/Color"]
+margin_left = 290.0
+margin_right = 390.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 0 )
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[node name="Gradient" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 160.0
+margin_right = 390.0
+margin_bottom = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/Gradient"]
+margin_top = 3.0
+margin_right = 341.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Gradient Options"
+script = ExtResource( 7 )
+tip = "Parameters allowing the bullet to have a color progression through a gradient, according to its life time."
+
+[node name="Button" type="Button" parent="VBoxContainer/Gradient"]
+margin_left = 345.0
+margin_right = 390.0
+margin_bottom = 20.0
+text = "Show"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupPos" type="Position2D" parent="VBoxContainer/Gradient/Button"]
+position = Vector2( -325, 22 )
+
+[node name="Control" type="MarginContainer" parent="VBoxContainer/Gradient/Button"]
+margin_left = -325.0
+margin_top = 22.0
+margin_right = -285.0
+margin_bottom = 62.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Gradient/Button/Control"]
+margin_right = 320.0
+margin_bottom = 80.0
+color = Color( 0.341176, 0.266667, 0.294118, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Gradient/Button/Control"]
+margin_right = 320.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 320, 0 )
+
+[node name="UseGradient" type="HBoxContainer" parent="VBoxContainer/Gradient/Button/Control/VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_right = 320.0
+margin_bottom = 24.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "shell.use_gradient"
+
+[node name="Label" type="Label" parent="VBoxContainer/Gradient/Button/Control/VBoxContainer/UseGradient"]
+margin_top = 5.0
+margin_right = 292.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Use Gradient"
+script = ExtResource( 7 )
+tip = "(bool)
+If true, bullet will use its gradient colors."
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/Gradient/Button/Control/VBoxContainer/UseGradient"]
+margin_left = 296.0
+margin_right = 320.0
+margin_bottom = 24.0
+
+[node name="FirstColor" type="HBoxContainer" parent="VBoxContainer/Gradient/Button/Control/VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 28.0
+margin_right = 320.0
+margin_bottom = 52.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "shell.gradient"
+
+[node name="Label" type="Label" parent="VBoxContainer/Gradient/Button/Control/VBoxContainer/FirstColor"]
+margin_top = 5.0
+margin_right = 154.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "FirstColor"
+script = ExtResource( 7 )
+tip = "(Color)
+First color of bullets gradient. Bullet starts off as this color."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Gradient/Button/Control/VBoxContainer/FirstColor"]
+margin_left = 158.0
+margin_right = 216.0
+margin_bottom = 24.0
+text = "0.0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/Gradient/Button/Control/VBoxContainer/FirstColor"]
+margin_left = 220.0
+margin_right = 320.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[node name="LastColor" type="HBoxContainer" parent="VBoxContainer/Gradient/Button/Control/VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 56.0
+margin_right = 320.0
+margin_bottom = 80.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "shell.gradient"
+index = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Gradient/Button/Control/VBoxContainer/LastColor"]
+margin_top = 5.0
+margin_right = 154.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "LastColor"
+script = ExtResource( 7 )
+tip = "(Color)
+Last color of bullets gradient. Bullet dies as this color."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Gradient/Button/Control/VBoxContainer/LastColor"]
+margin_left = 158.0
+margin_right = 216.0
+margin_bottom = 24.0
+text = "1.0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/Gradient/Button/Control/VBoxContainer/LastColor"]
+margin_left = 220.0
+margin_right = 320.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false

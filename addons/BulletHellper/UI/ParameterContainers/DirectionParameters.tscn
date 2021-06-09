@@ -1,0 +1,578 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/BulletHellper/UI/PropertySetters/CheckboxParameter.gd" type="Script" id=1]
+[ext_resource path="res://addons/BulletHellper/UI/ParameterContainers/ParameterGroup.gd" type="Script" id=2]
+[ext_resource path="res://addons/BulletHellper/UI/PropertySetters/DirectionDraw.gd" type="Script" id=3]
+[ext_resource path="res://addons/BulletHellper/UI/PropertySetters/DirectionParameter.gd" type="Script" id=4]
+[ext_resource path="res://addons/BulletHellper/UI/PropertySetters/ShotTypeParameter.gd" type="Script" id=5]
+[ext_resource path="res://addons/BulletHellper/UI/PropertySetters/TextParameter.gd" type="Script" id=6]
+[ext_resource path="res://addons/BulletHellper/UI/PopupMenuButton.gd" type="Script" id=7]
+[ext_resource path="res://addons/BulletHellper/UI/TooltipLabel.gd" type="Script" id=8]
+[ext_resource path="res://addons/BulletHellper/UI/ParameterContainers/ParametersHideShow.gd" type="Script" id=9]
+
+
+[node name="PositionParams" type="MarginContainer"]
+margin_right = 390.0
+margin_bottom = 175.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+param_containers = [ NodePath("VBoxContainer/InnerVBox"), NodePath("VBoxContainer/InnerVBox/Rotation/Button/Control"), NodePath("VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer") ]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 390.0
+margin_bottom = 384.0
+rect_min_size = Vector2( 390, 0 )
+color = Color( 0.278431, 0.4, 0.313726, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 390.0
+margin_bottom = 384.0
+rect_min_size = Vector2( 390, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 390.0
+margin_bottom = 20.0
+script = ExtResource( 9 )
+hideable_controls = [ NodePath("../InnerVBox") ]
+
+[node name="GenericLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_top = 3.0
+margin_right = 286.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Formation Parameters"
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 290.0
+margin_right = 390.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 0 )
+toggle_mode = true
+
+[node name="InnerVBox" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 390.0
+margin_bottom = 380.0
+
+[node name="Aiming" type="HBoxContainer" parent="VBoxContainer/InnerVBox" groups=[
+"PropertySetters",
+]]
+margin_right = 390.0
+margin_bottom = 24.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "aiming_bullet"
+controls_to_toggle = [ NodePath("../Direction"), NodePath("../Rotation") ]
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Aiming"]
+margin_top = 5.0
+margin_right = 362.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Aiming"
+script = ExtResource( 8 )
+tip = "(bool)
+If true, shots will be aimed at PatternManager's target, or the mouse position, if none is set."
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/InnerVBox/Aiming"]
+margin_left = 366.0
+margin_right = 390.0
+margin_bottom = 24.0
+
+[node name="Direction" type="HBoxContainer" parent="VBoxContainer/InnerVBox" groups=[
+"PropertySetters",
+]]
+margin_top = 28.0
+margin_right = 390.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 0, 116 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "direction"
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Direction"]
+margin_right = 86.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Direction"
+script = ExtResource( 8 )
+tip = "(Vector2, normalized vector)
+Direction that the bullets will be shot in if not aimed."
+
+[node name="DirectionSlider" type="HSlider" parent="VBoxContainer/InnerVBox/Direction"]
+margin_left = 90.0
+margin_right = 390.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 300, 0 )
+max_value = 360.0
+script = ExtResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/InnerVBox/Direction/DirectionSlider"]
+show_behind_parent = true
+margin_left = 100.0
+margin_top = 16.0
+margin_right = 200.0
+margin_bottom = 116.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/InnerVBox/Direction/DirectionSlider/MarginContainer"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+color = Color( 0.572549, 0.627451, 0.576471, 1 )
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Direction/DirectionSlider/MarginContainer"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+text = "000 deg"
+
+[node name="Rotation" type="HBoxContainer" parent="VBoxContainer/InnerVBox"]
+margin_top = 148.0
+margin_right = 390.0
+margin_bottom = 168.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Rotation"]
+margin_top = 3.0
+margin_right = 341.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Rotation"
+script = ExtResource( 8 )
+tip = "Parameters that allow rotation between each shot fired."
+
+[node name="Button" type="Button" parent="VBoxContainer/InnerVBox/Rotation"]
+margin_left = 345.0
+margin_right = 390.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "Show"
+script = ExtResource( 7 )
+
+[node name="Control" type="MarginContainer" parent="VBoxContainer/InnerVBox/Rotation/Button"]
+visible = false
+margin_left = -325.0
+margin_top = 22.0
+margin_right = 25.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 350, 48 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/InnerVBox/Rotation/Button/Control"]
+show_behind_parent = true
+margin_right = 350.0
+margin_bottom = 48.0
+color = Color( 0.239216, 0.313726, 0.231373, 1 )
+
+[node name="Rotate" type="HBoxContainer" parent="VBoxContainer/InnerVBox/Rotation/Button/Control" groups=[
+"PropertySetters",
+]]
+margin_right = 350.0
+margin_bottom = 24.0
+size_flags_vertical = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "is_rotating"
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Rotation/Button/Control/Rotate"]
+margin_top = 5.0
+margin_right = 322.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Rotate"
+script = ExtResource( 8 )
+tip = "(bool)
+If true, shot direction will rotate by the specified amount between each shot."
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/InnerVBox/Rotation/Button/Control/Rotate"]
+margin_left = 326.0
+margin_right = 350.0
+margin_bottom = 24.0
+
+[node name="RotationSpeed" type="HBoxContainer" parent="VBoxContainer/InnerVBox/Rotation/Button/Control" groups=[
+"PropertySetters",
+]]
+margin_top = 24.0
+margin_right = 350.0
+margin_bottom = 48.0
+size_flags_vertical = 8
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "rotating_speed"
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Rotation/Button/Control/RotationSpeed"]
+margin_top = 5.0
+margin_right = 288.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Rotation Speed"
+script = ExtResource( 8 )
+tip = "(float, degrees)
+Rotation applied to Pattern's direction between each shot."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/InnerVBox/Rotation/Button/Control/RotationSpeed"]
+margin_left = 292.0
+margin_right = 350.0
+margin_bottom = 24.0
+text = "0"
+
+[node name="PopupPos" type="Position2D" parent="VBoxContainer/InnerVBox/Rotation/Button"]
+position = Vector2( -325, 22 )
+
+[node name="AimBullet" type="HBoxContainer" parent="VBoxContainer/InnerVBox" groups=[
+"PropertySetters",
+]]
+margin_top = 172.0
+margin_right = 390.0
+margin_bottom = 196.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "shell.aim_individual_bullet"
+controls_to_toggle = [ NodePath("../StaticDir") ]
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/AimBullet"]
+margin_top = 5.0
+margin_right = 362.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Aim Each Bullet"
+script = ExtResource( 8 )
+tip = "(bool)
+If true, each individual bullet will
+be aimed at the target."
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/InnerVBox/AimBullet"]
+margin_left = 366.0
+margin_right = 390.0
+margin_bottom = 24.0
+
+[node name="StaticDir" type="HBoxContainer" parent="VBoxContainer/InnerVBox" groups=[
+"PropertySetters",
+]]
+margin_top = 200.0
+margin_right = 390.0
+margin_bottom = 224.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "use_static_direction"
+controls_to_toggle = [ NodePath("../AimBullet") ]
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/StaticDir"]
+margin_top = 5.0
+margin_right = 362.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Static direction"
+script = ExtResource( 8 )
+tip = "(bool)
+If true, each bullet will use the same direction before randomness is applied."
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/InnerVBox/StaticDir"]
+margin_left = 366.0
+margin_right = 390.0
+margin_bottom = 24.0
+
+[node name="ShotType" type="HBoxContainer" parent="VBoxContainer/InnerVBox" groups=[
+"PropertySetters",
+]]
+margin_top = 228.0
+margin_right = 390.0
+margin_bottom = 248.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "shot_type"
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/ShotType"]
+margin_top = 3.0
+margin_right = 357.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Spread Type"
+script = ExtResource( 8 )
+tip = "(LINEAR or ARCH)
+LINEAR - Bullets will spawn in a line with <Spread> length perpendicular to direction.
+ARCH - Bullets will spawn from the same point forming an arch of <Spread> degrees."
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/InnerVBox/ShotType"]
+margin_left = 361.0
+margin_right = 390.0
+margin_bottom = 20.0
+
+[node name="Spread" type="HBoxContainer" parent="VBoxContainer/InnerVBox" groups=[
+"PropertySetters",
+]]
+margin_top = 252.0
+margin_right = 390.0
+margin_bottom = 276.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "spread"
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Spread"]
+margin_top = 5.0
+margin_right = 328.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Spread"
+script = ExtResource( 8 )
+tip = "(float, position units if LINEAR, degrees if ARCH)
+The spread applied to each shot, affecting bullet spawn positions or individual directions according to <Spread Type>"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/InnerVBox/Spread"]
+margin_left = 332.0
+margin_right = 390.0
+margin_bottom = 24.0
+text = "30"
+
+[node name="Offset" type="HBoxContainer" parent="VBoxContainer/InnerVBox" groups=[
+"PropertySetters",
+]]
+margin_top = 280.0
+margin_right = 390.0
+margin_bottom = 304.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "position_offset"
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Offset"]
+margin_top = 5.0
+margin_right = 328.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Parallel Offset"
+script = ExtResource( 8 )
+tip = "(float, position units)
+Distance parallel to direction that bullets will spawn from the Pattern's spawn point."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/InnerVBox/Offset"]
+margin_left = 332.0
+margin_right = 390.0
+margin_bottom = 24.0
+text = "0"
+
+[node name="PerpendicularOffset" type="HBoxContainer" parent="VBoxContainer/InnerVBox" groups=[
+"PropertySetters",
+]]
+margin_top = 308.0
+margin_right = 390.0
+margin_bottom = 332.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "perpendicular_offset"
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/PerpendicularOffset"]
+margin_top = 5.0
+margin_right = 328.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Perpendicular Offset"
+script = ExtResource( 8 )
+tip = "(float, position units)
+Distance perpendicular  to direction that bullets will spawn from the Pattern's spawn point."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/InnerVBox/PerpendicularOffset"]
+margin_left = 332.0
+margin_right = 390.0
+margin_bottom = 24.0
+text = "0"
+
+[node name="Randomized" type="HBoxContainer" parent="VBoxContainer/InnerVBox"]
+margin_top = 336.0
+margin_right = 390.0
+margin_bottom = 356.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Randomized"]
+margin_top = 3.0
+margin_right = 341.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Randomizable Values"
+script = ExtResource( 8 )
+tip = "Parameters that affect each bullet's spawn position and direction randomly."
+
+[node name="Button" type="Button" parent="VBoxContainer/InnerVBox/Randomized"]
+margin_left = 345.0
+margin_right = 390.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "Show"
+script = ExtResource( 7 )
+
+[node name="Control" type="MarginContainer" parent="VBoxContainer/InnerVBox/Randomized/Button"]
+visible = false
+margin_left = -325.0
+margin_top = 22.0
+margin_right = 25.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 350, 48 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/InnerVBox/Randomized/Button/Control"]
+show_behind_parent = true
+margin_right = 350.0
+margin_bottom = 108.0
+color = Color( 0.239216, 0.313726, 0.231373, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/InnerVBox/Randomized/Button/Control"]
+margin_right = 350.0
+margin_bottom = 108.0
+
+[node name="RandomizedPos" type="HBoxContainer" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_right = 350.0
+margin_bottom = 24.0
+size_flags_vertical = 0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "randomize_position"
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer/RandomizedPos"]
+margin_top = 5.0
+margin_right = 288.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Max Random Radius"
+script = ExtResource( 8 )
+tip = "(float, position units)
+Max distance a bullet might spawn from their individual spawn points."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer/RandomizedPos"]
+margin_left = 292.0
+margin_right = 350.0
+margin_bottom = 24.0
+text = "0"
+
+[node name="RandomizedPerpendicular" type="HBoxContainer" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 28.0
+margin_right = 350.0
+margin_bottom = 52.0
+size_flags_vertical = 0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "randomize_perpendicular"
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer/RandomizedPerpendicular"]
+margin_top = 5.0
+margin_right = 288.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Max Random Perpendicular"
+script = ExtResource( 8 )
+tip = "(float, position units)
+Max distance a bullet might spawn from their individual spawn points, perpendicular to its direction."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer/RandomizedPerpendicular"]
+margin_left = 292.0
+margin_right = 350.0
+margin_bottom = 24.0
+text = "0"
+
+[node name="RandomizedParrallel" type="HBoxContainer" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 56.0
+margin_right = 350.0
+margin_bottom = 80.0
+size_flags_vertical = 0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "randomize_parallel"
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer/RandomizedParrallel"]
+margin_top = 5.0
+margin_right = 288.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Max Random Parallel"
+script = ExtResource( 8 )
+tip = "(float, position units)
+Max distance a bullet might spawn from their individual spawn points, parallel to its direction."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer/RandomizedParrallel"]
+margin_left = 292.0
+margin_right = 350.0
+margin_bottom = 24.0
+text = "0"
+
+[node name="RandomizedDir" type="HBoxContainer" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer" groups=[
+"PropertySetters",
+]]
+margin_top = 84.0
+margin_right = 350.0
+margin_bottom = 108.0
+size_flags_vertical = 8
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "randomize_direction"
+
+[node name="Label" type="Label" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer/RandomizedDir"]
+margin_top = 5.0
+margin_right = 288.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Max Random Direction"
+script = ExtResource( 8 )
+tip = "(float, degrees)
+Max random direction applied to each bullet."
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/InnerVBox/Randomized/Button/Control/VBoxContainer/RandomizedDir"]
+margin_left = 292.0
+margin_right = 350.0
+margin_bottom = 24.0
+text = "0"
+
+[node name="PopupPos" type="Position2D" parent="VBoxContainer/InnerVBox/Randomized/Button"]
+position = Vector2( -325, 22 )

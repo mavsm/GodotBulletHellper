@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/BulletHellper/TestingProps/PropPlayer.gd" type="Script" id=1]
+[ext_resource path="res://addons/BulletHellper/TestingProps/PropBomb.tscn" type="PackedScene" id=2]
+
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 30.0
+
+[node name="PropPlayer" type="Node2D"]
+script = ExtResource( 1 )
+graze_radius = 30
+prop_bomb = ExtResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 1 )
+
+[node name="Graze" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graze"]
+shape = SubResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -7.97197
+margin_top = -28.068
+margin_right = 32.028
+margin_bottom = -14.068
+__meta__ = {
+"_edit_use_anchors_": false
+}

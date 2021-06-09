@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/BulletHellper/UI/PatternSelector.gd" type="Script" id=1]
+
+
+[node name="PatternSelector" type="HBoxContainer"]
+margin_left = 25.0
+margin_top = 65.0
+margin_right = 65.0
+margin_bottom = 85.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 89.0
+margin_bottom = 17.0
+text = "Pattern Select"
+
+[node name="AddButton" type="Button" parent="."]
+modulate = Color( 0.760784, 1, 0.682353, 1 )
+margin_left = 93.0
+margin_right = 113.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+text = "+"
+
+[node name="RemoveButton" type="Button" parent="."]
+modulate = Color( 1, 0.631373, 0.631373, 1 )
+margin_left = 117.0
+margin_right = 137.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+disabled = true
+text = "-"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 141.0
+margin_right = 161.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+toggle_mode = true
+pressed = true
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="AddButton" to="." method="add_pattern_button"]
+[connection signal="pressed" from="RemoveButton" to="." method="remove_pattern_button"]
