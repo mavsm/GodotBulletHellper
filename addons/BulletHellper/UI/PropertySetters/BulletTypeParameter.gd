@@ -1,4 +1,4 @@
-extends PropertySetter
+extends BHPropertySetter
 
 export (Array, PackedScene) var bullet_scenes : Array
 

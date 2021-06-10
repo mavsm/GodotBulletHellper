@@ -1,5 +1,5 @@
 extends Node
-class_name PropertySetter
+class_name BHPropertySetter
 #Base for all types of setters for different properties and value types
 
 export (String) var property

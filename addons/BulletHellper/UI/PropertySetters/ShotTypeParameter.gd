@@ -1,4 +1,4 @@
-extends PropertySetter
+extends BHPropertySetter
 
 
 func _ready():

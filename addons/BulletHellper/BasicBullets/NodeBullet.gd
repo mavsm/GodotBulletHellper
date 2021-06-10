@@ -21,7 +21,7 @@ var grazed := false
 var died := false
 
 #Setup bullets info based on shell settings
-func setup(shell : BulletShell):
+func setup(shell : BHBulletShell):
 	starting_speed = shell.speed
 	speed = starting_speed
 	acceleration = shell.acceleration

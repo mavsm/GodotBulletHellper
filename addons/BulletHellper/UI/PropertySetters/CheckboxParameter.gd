@@ -1,4 +1,4 @@
-extends PropertySetter
+extends BHPropertySetter
 
 export (Array, NodePath) var controls_to_toggle
 

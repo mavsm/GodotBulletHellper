@@ -1,16 +1,18 @@
 extends CanvasLayer
 
 export (bool) var log_debug = false
-export (NodePath) var root_pattern_path
-export (PackedScene) var pattern_scene
 
-var current_pattern : BulletPattern
-var root_pattern : BulletPattern
+const PATTERN_SCENE_PATH = "res://addons/BulletHellper/Source/BulletPattern.tscn"
+
+var current_pattern : BulletHellperPattern
+var root_pattern : BulletHellperPattern
 
 var optimization_bullet_count : Label
 var optimization_fps : Label
 
 var pattern_reset_pos : Vector2
+
+var pattern_scene : PackedScene
 
 #List of patterns in this scene
 var patterns := []
@@ -18,11 +20,13 @@ var patterns := []
 var parameter_list := []
 
 func _ready():
-	current_pattern = get_node(root_pattern_path)
-	root_pattern = get_node(root_pattern_path)
+	current_pattern = get_node("../BulletPattern")
+	root_pattern = get_node("../BulletPattern")
 	pattern_reset_pos = root_pattern.position
 	patterns = [current_pattern]
 	set_property_setters()
+	
+	pattern_scene = load(PATTERN_SCENE_PATH)
 	
 	set_process_unhandled_input(false)
 	
@@ -37,8 +41,14 @@ func _ready():
 	parameter_list += $UIContainer/Parameters/BulletParams.parameters_affected
 	$UIContainer/Parameters/PatternControls.connect("changed_property", self, "_on_property_changed")
 	parameter_list += $UIContainer/Parameters/PatternControls.parameters_affected
+	$UIContainer/Parameters/PatternControls.connect("add_pattern", self, "add_pattern")
+	$UIContainer/Parameters/PatternControls.connect("duplicate_pattern", self, "duplicate_pattern")
+	$UIContainer/Parameters/PatternControls.connect("select_pattern", self, "select_pattern")
+	$UIContainer/Parameters/PatternControls.connect("remove_pattern", self, "remove_pattern")
 	
 	print(parameter_list)
+	
+	$SaveLoadArea.connect("pattern_loaded", self, "_on_load_pattern")
 	$SaveLoadArea.root_pattern = root_pattern
 
 # Used to constantly update optimization data
@@ -78,7 +88,7 @@ func set_current_position(pos : Vector2):
 	get_parent().update()
 
 func add_pattern():
-	var new_pattern : BulletPattern = pattern_scene.instance()
+	var new_pattern : BulletHellperPattern = pattern_scene.instance()
 	# We need to reset this dict here or this new pattern
 	#  will share it with the original for some reason
 	new_pattern.shell_settings = {}
@@ -119,7 +129,7 @@ func _on_load_pattern(pattern : PackedScene):
 	var num_of_patterns := 1
 	patterns = [root_pattern]
 	for child in root_pattern.get_children():
-		if child is BulletPattern:
+		if child is BulletHellperPattern:
 			num_of_patterns+=1
 			patterns.append(child)
 	$UIContainer/Parameters/PatternControls.reset(num_of_patterns)

@@ -1,5 +1,5 @@
 extends Node2D
-class_name BulletPattern
+class_name BulletHellperPattern
 
 signal shot
 
@@ -50,7 +50,7 @@ export (float)              var randomize_perpendicular := 0.0
 # Applies properties mentioned to bullets
 export (Dictionary)         var shell_settings := {}
 
-var shell : BulletShell = BulletShell.new(100.0)
+var shell : BHBulletShell = BHBulletShell.new(100.0)
 
 var type : int
 var bullet_container

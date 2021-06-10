@@ -1,4 +1,4 @@
-extends PropertySetter
+extends BHPropertySetter
 
 func _ready():
 	$DirectionSlider.connect("changed_direction", self, "_on_changed_direction")

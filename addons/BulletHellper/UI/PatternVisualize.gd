@@ -3,7 +3,7 @@ extends Node2D
 const SELECTED_COLOR = Color.red
 const UNSELECTED_COLOR = Color.darkcyan
 
-var pattern : BulletPattern
+var pattern : BulletHellperPattern
 var UIManager
 
 
@@ -17,7 +17,7 @@ func _draw():
 	draw_rect(BHPatternManager.BOUNDARY_RECT, Color.black, false)
 	draw_cross(pattern.global_position, 10, UNSELECTED_COLOR)
 	for child in pattern.get_children():
-		if not child is BulletPattern: continue
+		if not child is BulletHellperPattern: continue
 		draw_cross(child.global_position, 10, UNSELECTED_COLOR)
 	draw_cross(UIManager.current_pattern.global_position, 20, SELECTED_COLOR)
 

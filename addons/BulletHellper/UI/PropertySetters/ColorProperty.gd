@@ -1,5 +1,5 @@
-extends PropertySetter
-class_name ColorProperty
+extends BHPropertySetter
+class_name BHColorProperty
 
 var color_picker : ColorPickerButton
 

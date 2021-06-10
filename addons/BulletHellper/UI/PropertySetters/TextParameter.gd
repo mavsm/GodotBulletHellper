@@ -1,4 +1,4 @@
-extends PropertySetter
+extends BHPropertySetter
 
 var text_entry : LineEdit
 

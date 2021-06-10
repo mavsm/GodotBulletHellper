@@ -4,7 +4,7 @@ signal pattern_loaded(pattern)
 
 var save_path_input : LineEdit
 var save_path := ""
-var root_pattern : BulletPattern
+var root_pattern : BulletHellperPattern
 var packed_root_scene := PackedScene.new()
 
 func _ready():

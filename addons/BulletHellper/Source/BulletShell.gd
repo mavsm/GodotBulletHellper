@@ -1,5 +1,5 @@
 extends Reference
-class_name BulletShell
+class_name BHBulletShell
 
 
 var speed : float

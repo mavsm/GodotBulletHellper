@@ -1,4 +1,4 @@
-extends ColorProperty
+extends BHColorProperty
 
 export var index = 0
 

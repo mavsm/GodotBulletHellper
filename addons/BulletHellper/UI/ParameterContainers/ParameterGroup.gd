@@ -11,7 +11,7 @@ func _ready():
 	for path in param_containers:
 		var node : Node = get_node(path)
 		for child in node.get_children():
-			if child is PropertySetter:
+			if child is BHPropertySetter:
 				child.connect("property_changed", self, "_property_changed")
 				parameters_affected.append(child.property)
 
