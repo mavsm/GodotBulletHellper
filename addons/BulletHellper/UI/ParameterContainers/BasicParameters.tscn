@@ -1,17 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/BulletHellper/UI/PopupMenuButton.gd" type="Script" id=1]
 [ext_resource path="res://addons/BulletHellper/UI/ParameterContainers/ParameterGroup.gd" type="Script" id=2]
 [ext_resource path="res://addons/BulletHellper/UI/PropertySetters/TextParameter.gd" type="Script" id=3]
 [ext_resource path="res://addons/BulletHellper/UI/TooltipLabel.gd" type="Script" id=4]
 [ext_resource path="res://addons/BulletHellper/UI/PropertySetters/BulletTypeParameter.gd" type="Script" id=5]
-[ext_resource path="res://addons/BulletHellper/BasicBullets/SmallBullet.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/BulletHellper/BasicBullets/BigBullet.tscn" type="PackedScene" id=7]
-[ext_resource path="res://addons/BulletHellper/BasicBullets/SimpleBullet.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/BulletHellper/UI/ParameterContainers/ParametersHideShow.gd" type="Script" id=9]
-
-
-
 
 [node name="BasicParameters" type="MarginContainer"]
 margin_right = 390.0
@@ -247,7 +241,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 property = "bullet_scene"
-bullet_scenes = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ) ]
 
 [node name="Label" type="Label" parent="VBoxContainer/BulletType"]
 margin_top = 3.0

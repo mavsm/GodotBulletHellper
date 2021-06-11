@@ -30,7 +30,7 @@ export (float)              var spread := 0.0
 # If true, each bullet will use the same direction before randomness is applied
 export (bool)               var use_static_direction := false
 # Direction of the shot
-export (Vector2)            var direction := Vector2()
+export (Vector2)            var direction := Vector2() setget set_direction
 # How far away from the starting points should the bullet be?
 export (float)              var position_offset := 0.0
 # How far away from the starting points perpendicular to directioon should the bullet be?
@@ -115,11 +115,14 @@ func get(property : String):
 		var subproperties = property.split(".", true, 1)
 		return get(subproperties[0]).get(subproperties[1])
 	return .get(property)
-	
+
+func set_direction(new_dir : Vector2):
+	direction = new_dir
+	if shooting:
+		rotated_dir = direction
 
 func set_aim_target(new_target : Node):
 	aim_target = new_target
-
 
 func set_bullet_container(new_bullet_container : Node):
 	bullet_container = new_bullet_container
@@ -188,9 +191,9 @@ func enable():
 
 func _on_timer_timeout():
 	if shooting:
+		shoot_bullet(global_position)
 		if is_rotating:
 			rotated_dir = rotated_dir.rotated(deg2rad(rotating_speed))
-		shoot_bullet(global_position)
 
 
 """
@@ -201,8 +204,8 @@ func _on_timer_timeout():
 
 #Change in-bullet params
 func affect_bullet(bullet):
-	bullet.setup(shell)
-	
+	if bullet.has_method("setup"):
+		bullet.setup(shell)
 
 func shoot_bullet( spawn_pos := Vector2.ZERO):
 	if not bullet_scene:

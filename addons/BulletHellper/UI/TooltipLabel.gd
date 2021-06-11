@@ -1,7 +1,7 @@
 extends Label
 
 export (String, MULTILINE) var tip = ""
-export var tooltip_wait_time = 1.5
+export var tooltip_wait_time = .75
 
 var has_mouse : bool
 
