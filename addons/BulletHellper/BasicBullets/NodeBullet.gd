@@ -1,4 +1,5 @@
 extends Node2D
+class_name BHBullet
 
 export var starting_speed : float
 export var direction := Vector2(0,1)
@@ -20,10 +21,14 @@ var target_scale : float = 1.0
 var grazed := false
 var died := false
 
+var angular_speed := 0.0
+
 #Setup bullets info based on shell settings
 func setup(shell : BHBulletShell):
-	starting_speed = shell.speed
+	if starting_speed == 0:
+		starting_speed = shell.speed
 	speed = starting_speed
+	angular_speed = deg2rad(shell.angular_speed)
 	acceleration = shell.acceleration
 	lifetime = shell.lifetime
 	check_boundary_time = shell.oob_check_time
@@ -35,7 +40,6 @@ func setup(shell : BHBulletShell):
 		modulate = shell.color
 	if shell.aim_individual_bullet:
 		direction = BHPatternManager.get_target_position() - position
-	
 
 func _ready():
 	spent_time = 0.0
@@ -44,15 +48,18 @@ func _ready():
 
 func _physics_process(delta):
 	move_bullet(delta)
+	check_collisions()
 
 func move_bullet(delta):
-	rotation = -direction.angle_to(Vector2(0, 1))
+	direction = direction.rotated(angular_speed*delta)
+	rotation = -direction.angle_to(Vector2.UP)
 	
 	position += direction*speed*delta
 	speed = speed + acceleration*delta
 	
 	spent_time += delta
-	
+
+func check_collisions():
 	var dist_sqrd_to_player = BHPatternManager.get_target_position().distance_squared_to(global_position)
 	if not grazed and BHPatternManager.was_grazed(dist_sqrd_to_player, radius):
 		_grazed()

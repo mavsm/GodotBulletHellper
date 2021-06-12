@@ -17,6 +17,8 @@ var gradient := Gradient.new()
 
 var aim_individual_bullet := false
 
+var angular_speed := 0.0
+
 func _init(spd : float):
 	speed = spd
 	gradient = Gradient.new()
