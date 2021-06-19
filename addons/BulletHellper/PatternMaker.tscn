@@ -169,7 +169,7 @@ margin_bottom = 602.0
 [node name="BulletParams" parent="UI/UIContainer/Parameters" instance=ExtResource( 4 )]
 margin_top = 606.0
 margin_right = 400.0
-margin_bottom = 786.0
+margin_bottom = 870.0
 
 [node name="ToolTipPopup" parent="UI" instance=ExtResource( 5 )]
 margin_left = 10.883

@@ -3,6 +3,7 @@ class_name BHBulletShell
 
 
 var speed : float
+var max_speed : float = 0.0
 var lifetime : float = 3.0
 var oob_check_time : float = 0.0
 var acceleration : float = 0.0
@@ -18,6 +19,7 @@ var gradient := Gradient.new()
 var aim_individual_bullet := false
 
 var angular_speed := 0.0
+var max_angular_stray := 0.0
 
 func _init(spd : float):
 	speed = spd
