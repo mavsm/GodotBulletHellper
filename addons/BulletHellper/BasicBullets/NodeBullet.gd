@@ -82,7 +82,7 @@ func check_collisions():
 	
 	if use_gradient:
 		var time = lifetime if lifetime > 0 else 1
-		modulate = color_gradient.interpolate(spent_time/lifetime)
+		modulate = color_gradient.interpolate(spent_time/time)
 
 func _out_of_bounds():
 	_die()
